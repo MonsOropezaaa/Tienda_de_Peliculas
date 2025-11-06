@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <h2>Tu Carrito de Compras</h2>
+    <div class="row">
+        <div class="col-md-8">
+            
+            {{#each productos_en_carrito}}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{IMAGEN}}" class="img-fluid" alt="{{TITULO}}">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{TITULO}}</h5>
+                            <p class="text-muted">Año: {{AÑO}}</p>
+                            <p>Tipo: {{TIPO_DE_TRANSACCION}}</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <h5>${{PRECIO_A_MOSTRAR}}</h5>
+                            <a href="/carrito/delete/{{ID_CARRITO}}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="card card-body text-center">
+                <p>Tu carrito está vacío.</p>
+                <a href="/peliculas">Ir a ver películas</a>
+            </div>
+            {{/each}}
+            </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Resumen</h4>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <strong>${{total_carrito}}</strong>
+                    </div>
+                    <a href="/checkout" class="btn btn-primary btn-block mt-3">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
