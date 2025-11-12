@@ -21,7 +21,8 @@ pool.getConnection((err, connection)=>{
     return;
 });
 
-//Promisify Pool Querys
-promisify(pool.query);
+// Le decimos a 'promisify' que use el contexto (this) del 'pool'
+pool.getConnection = promisify(pool.getConnection).bind(pool);
+pool.query = promisify(pool.query).bind(pool);
 
 module.exports = pool;

@@ -12,12 +12,46 @@
                         </div>
                         <div class="col-md-6">
                             <h5>{{TITULO}}</h5>
-                            <p class="text-muted">Año: {{AÑO}}</p>
-                            <p>Tipo: {{TIPO_DE_TRANSACCION}}</p>
+                            <div class="d-flex align-items-center mb-2"> 
+                            {{#if (gt CANTIDAD 1)}}
+                            <form action="/carrito/decrease" method="POST" class="mr-2">
+                                <input type="hidden" name="id_carrito" value="{{ID_CARRITO}}">
+                                <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                                <input type="hidden" name="tipo_transaccion" value="{{TIPO_DE_TRANSACCION}}">
+                                <button type="submit" class="btn btn-warning btn-sm">-</button>
+                            </form>
+                            {{else}}
+                            <form action="/carrito/delete" method="POST" class="mr-2">
+                                <input type="hidden" name="id_carrito" value="{{ID_CARRITO}}">
+                                <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                                <input type="hidden" name="tipo_transaccion" value="{{TIPO_DE_TRANSACCION}}">
+                                <input type="hidden" name="cantidad" value="{{CANTIDAD}}">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> 
+                                </button>
+                            </form>
+                             {{/if}}
+
+                            <span class="mx-2"><strong>{{CANTIDAD}}</strong></span>
+
+                            <form action="/carrito/add" method="POST" class="ml-2">
+                                <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                                <input type="hidden" name="tipo_transaccion" value="{{TIPO_DE_TRANSACCION}}">
+                                <button type="submit" class="btn btn-success btn-sm">+</button>
+                            </form>
+                            </div>
+                            <p>{{TIPO_DE_TRANSACCION}}</p>
                         </div>
                         <div class="col-md-3 text-right">
-                            <h5>${{PRECIO_A_MOSTRAR}}</h5>
-                            <a href="/carrito/delete/{{ID_CARRITO}}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <h5>${{precio_a_mostrar}}</h5>
+                            <form action="/carrito/delete/" method="POST" style="display: inline;">
+                               <input type="hidden" name="id_carrito" value="{{ID_CARRITO}}">
+                               <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                               <input type="hidden" name="tipo_transaccion" value="{{TIPO_DE_TRANSACCION}}">
+                               <input type="hidden" name="cantidad" value="{{CANTIDAD}}">
+
+                               <button type = "submit" class="btn btn-danger btn-sm"> Eliminar </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -39,7 +73,13 @@
                         <strong>Total:</strong>
                         <strong>${{total_carrito}}</strong>
                     </div>
-                    <a href="/checkout" class="btn btn-primary btn-block mt-3">Proceder al Pago</a>
+                    <form action="/checkout" method="POST">
+                        <input type="hidden" name="monto_total" value="{{total_carrito}}">  
+                        <button type="submit" class="btn btn-primary btn-block mt-3">
+                            Confirmar y Pagar
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>

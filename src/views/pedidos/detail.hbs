@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <h2>Detalle del Pedido #{{pedido_id}}</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            
+            {{#each detalles}}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{IMAGEN}}" class="img-fluid" alt="{{TITULO}}">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>{{TITULO}}</h5>
+                            <p class="mb-1">{{TIPO_DE_TRANSACCION}}</p>
+                            <p class="mb-1">Cantidad: {{CANTIDAD}}</p>
+                            <p>Precio (al comprar) c/u: <strong>${{PRECIO}}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            
+            <a href="/profile" class="btn btn-secondary mt-3">
+                &larr; Volver a mi Perfil
+            </a>
+        </div>
+    </div>
+</div>

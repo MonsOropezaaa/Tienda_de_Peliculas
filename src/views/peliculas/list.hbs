@@ -1,0 +1,81 @@
+<div class="container p-4">
+    
+    {{#if titulo_filtro}}
+    <div class="row mb-3">
+        <div class="col">
+            <h2>{{titulo_filtro}}</h2>
+            <hr>
+        </div>
+    </div>
+    {{/if}}
+    
+    <div class="row">
+
+        {{#each peliculas}}
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                
+                <img src="{{IMAGEN}}" class="card-img-top" alt="{{TITULO}}">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{TITULO}}</h5>
+                    <p class="card-text">{{DESCRIPCION}}</p>
+                </div>
+                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Año: </strong> {{AÑO}}</li>
+                    <li class="list-group-item"><strong>Género:</strong> {{Generos}}</li>
+                    <li class="list-group-item"><strong>Director:</strong> {{Directores}}</li>
+                    <li class="list-group-item"><strong>Actores:</strong> {{Actores}}</li>
+                    <li class="list-group-item">Rentar: ${{PRECIO_RENTA}}</li>
+                    <li class="list-group-item">Comprar: ${{PRECIO_COMPRA}}</li>
+                </ul>
+                
+                <div class="card-footer">
+                    <a href="/peliculas/{{ID_PELICULA}}" class="btn btn-primary btn-sm m-1">
+                        Ver detalles
+                    </a>
+
+                    <form action="/carrito/add" method="POST" style="display: inline;">
+                        <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+
+                        {{#if COPIAS_RENTA_DISPONIBLES}} 
+                            <button type="submit" name="tipo_transaccion" value="RENTA" class="btn btn-info btn-sm m-1">
+                                Rentar
+                            </button>
+                        {{else}}
+                            <button class="btn btn-info btn-sm m-1" disabled>
+                                Rentar (Agotado)
+                            </button>
+                        {{/if}}
+
+                        {{#if COPIAS_VENTA_DISPONIBLES}}
+                            <button type="submit" name="tipo_transaccion" value="COMPRA" class="btn btn-success btn-sm m-1">
+                                Comprar
+                            </button>
+                        {{else}}
+                            <button class="btn btn-success btn-sm m-1" disabled>
+                                Venta (agotado)
+                            </button>  
+                        {{/if}}     
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        {{else}}
+        
+        <div class="col-md-12">
+            <div class="alert alert-info text-center" role="alert">
+                ¡Uppps! Todavía no hay películas de este género. Estamos trabajando en ello.
+            </div>
+            <div class="text-center">
+                <a href="/peliculas" class="btn btn-primary">Volver al catálogo principal</a>
+            </div>
+        </div>
+
+        {{/each}}
+        </div>
+</div>
