@@ -1,10 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../database'); // Tu conexión
+const pool = require('../database');
+const { isLoggedIn, isAdmin } = require('../lib/auth');
 
-/* * Esta es la ruta para la página de "Explorar Géneros"
- * (ej. /generos)
- */
+router.get('/add', isLoggedIn, isAdmin, (req, res) => {
+    res.render('generos/add'); 
+});
+
+// ---  agregar un nuevo genero
+router.post('/add', isLoggedIn, isAdmin, async (req, res) => {
+    try {
+        const { NOMBRE } = req.body; 
+        const nuevoGenero = { NOMBRE };
+        
+        await pool.query('INSERT INTO GENERO SET ?', [nuevoGenero]);
+        
+        req.flash('success', 'Género agregado correctamente.');
+        res.redirect('/admin/dashboard'); 
+    } catch (error) {
+        console.error(error);
+        req.flash('error', 'Error al guardar el género.');
+        res.redirect('/generos/add');
+    }
+});
+
+//se exploran géneros aquí
 router.get('/', async (req, res) => {
     try {
         const generos = await pool.query('SELECT * FROM GENERO ORDER BY NOMBRE ASC');
@@ -15,7 +35,6 @@ router.get('/', async (req, res) => {
         res.send('Error al cargar la página de géneros');
     }
 });
-
 
 /* * 
  * Capturará /generos/Acción, /generos/Drama, /generos/Comedia, etc.

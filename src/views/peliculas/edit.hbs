@@ -1,0 +1,69 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Editar Película</h3>
+                    
+                    <form action="/peliculas/edit/{{pelicula.ID_PELICULA}}" method="POST">
+                        
+                        <div class="form-group">
+                            <label>Título</label>
+                            <input type="text" name="TITULO" class="form-control" value="{{pelicula.TITULO}}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea name="DESCRIPCION" rows="3" class="form-control">{{pelicula.DESCRIPCION}}</textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Año</label>
+                                <input type="number" name="AÑO" class="form-control" value="{{pelicula.AÑO}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Precio Renta</label>
+                                <input type="text" name="PRECIO_RENTA" class="form-control" value="{{pelicula.PRECIO_RENTA}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Precio Compra</label>
+                                <input type="text" name="PRECIO_COMPRA" class="form-control" value="{{pelicula.PRECIO_COMPRA}}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                             <div class="form-group col-md-6">
+                                <label>Stock Renta</label>
+                                <input type="number" name="COPIAS_RENTA_DISPONIBLES" class="form-control" value="{{pelicula.COPIAS_RENTA_DISPONIBLES}}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Stock Venta</label>
+                                <input type="number" name="COPIAS_VENTA_DISPONIBLES" class="form-control" value="{{pelicula.COPIAS_VENTA_DISPONIBLES}}">
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label>Imagen (URL)</label>
+                            <input type="text" name="IMAGEN" class="form-control" value="{{pelicula.IMAGEN}}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Actores (separados por coma)</label>
+                            <textarea name="actores" class="form-control">{{pelicula.Actores}}</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Directores (separados por coma)</label>
+                            <textarea name="directores" class="form-control">{{pelicula.Directores}}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block">
+                            Actualizar Película
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,30 +1,26 @@
+{{!-- En src/views/auth/signin.hbs --}}
+
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card text-center">
                 <div class="card-header">
-                    <h3>Sign In</h3>
+                    <h3>Bienvenid@</h3>
                 </div>
                 <div class="card-body">
-                    {{#if error.length}}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{error.[0]}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="logo-container mb-3"> 
+                        <h4 class="card-title">MonMovies</h4>
                     </div>
-                    {{/if}}
-                    <img src="/img/logo.png" alt="Logo Peliculas" class="card-img-top mx-auto m-2 w-50">
                     <form action="/signin" method="POST">
                         <div class="form-group">
-                            <input type="text" name="email" placeholder="Ingresa tu email" class="form-control">
+                            <input type="email" name="email" placeholder="Ingresa tu email" class="form-control" autofocus required>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" placeholder="Ingresa tu contraseña" class="form-control">
+                            <input type="password" name="password" placeholder="Ingresa tu contraseña" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block">
-                                SignIn
+                            <button class="btn btn-success btn-block">
+                                Iniciar Sesión
                             </button>
                         </div>
                     </form>

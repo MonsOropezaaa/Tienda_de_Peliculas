@@ -17,6 +17,16 @@ module.exports = {
             return next();
         }
         return res.redirect('/signin');
+    },
+
+    isAdmin(req, res, next){
+        if(req.isAuthenticated()){
+            if(req.user.ROL === 'ADMIN'){
+                return next();
+            }
+        }
+        req.flash('error', 'Acceso denegado, solo para administradores');
+        res.redirect('/profile');
     }
 
 };

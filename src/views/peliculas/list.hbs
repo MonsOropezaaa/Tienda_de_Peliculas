@@ -16,60 +16,84 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 
-                <img src="{{IMAGEN}}" class="card-img-top" alt="{{TITULO}}">
-                
-                <div class="card-body">
-                    <h5 class="card-title">{{TITULO}}</h5>
-                    <p class="card-text">{{DESCRIPCION}}</p>
+                <div style="height: 300px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="{{IMAGEN}}" class="card-img-top" alt="{{TITULO}}" style="max-height: 100%; width: auto;">
                 </div>
                 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Año: </strong> {{AÑO}}</li>
-                    <li class="list-group-item"><strong>Género:</strong> {{Generos}}</li>
-                    <li class="list-group-item"><strong>Director:</strong> {{Directores}}</li>
-                    <li class="list-group-item"><strong>Actores:</strong> {{Actores}}</li>
-                    <li class="list-group-item">Rentar: ${{PRECIO_RENTA}}</li>
-                    <li class="list-group-item">Comprar: ${{PRECIO_COMPRA}}</li>
-                </ul>
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{TITULO}}</h5>
+                </div>
                 
                 <div class="card-footer">
-                    <a href="/peliculas/{{ID_PELICULA}}" class="btn btn-primary btn-sm m-1">
-                        Ver detalles
-                    </a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Rentar: ${{PRECIO_RENTA}}</li>
+                        <li class="list-group-item">Comprar: ${{PRECIO_COMPRA}}</li>
+                    </ul>
 
-                    <form action="/carrito/add" method="POST" style="display: inline;">
-                        <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                    <div class="d-flex justify-content-around mt-2">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-{{ID_PELICULA}}">
+                            Ver detalles
+                        </button>
 
-                        {{#if COPIAS_RENTA_DISPONIBLES}} 
-                            <button type="submit" name="tipo_transaccion" value="RENTA" class="btn btn-info btn-sm m-1">
-                                Rentar
-                            </button>
-                        {{else}}
-                            <button class="btn btn-info btn-sm m-1" disabled>
-                                Rentar (Agotado)
-                            </button>
-                        {{/if}}
+                        <form action="/carrito/add" method="POST" style="display: inline;">
+                            <input type="hidden" name="id_pelicula" value="{{ID_PELICULA}}">
+                            
+                            {{#if COPIAS_RENTA_DISPONIBLES}} 
+                                <button type="submit" name="tipo_transaccion" value="RENTA" class="btn btn-info btn-sm">
+                                    Rentar
+                                </button>
+                            {{else}}
+                                <button class="btn btn-info btn-sm" disabled>
+                                    Rentar (Agotado)
+                                </button>
+                            {{/if}}
 
-                        {{#if COPIAS_VENTA_DISPONIBLES}}
-                            <button type="submit" name="tipo_transaccion" value="COMPRA" class="btn btn-success btn-sm m-1">
-                                Comprar
-                            </button>
-                        {{else}}
-                            <button class="btn btn-success btn-sm m-1" disabled>
-                                Venta (agotado)
-                            </button>  
-                        {{/if}}     
-                    </form>
+                            {{#if COPIAS_VENTA_DISPONIBLES}}
+                                <button type="submit" name="tipo_transaccion" value="COMPRA" class="btn btn-success btn-sm">
+                                    Comprar
+                                </button>
+                            {{else}}
+                                <button class="btn btn-success btn-sm" disabled>
+                                    Venta (agotado)
+                                </button>  
+                            {{/if}}     
+                        </form>
+                    </div>
                 </div>
 
             </div>
         </div>
 
+        <div class="modal fade" id="modal-{{ID_PELICULA}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{TITULO}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{DESCRIPCION}}</p>
+                        <hr>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Año: </strong> {{AÑO}}</li>
+                            <li class="list-group-item"><strong>Género:</strong> {{Generos}}</li>
+                            <li class="list-group-item"><strong>Director:</strong> {{Directores}}</li>
+                            <li class="list-group-item"><strong>Actores:</strong> {{Actores}}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{else}}
         
         <div class="col-md-12">
             <div class="alert alert-info text-center" role="alert">
-                ¡Uppps! Todavía no hay películas de este género. Estamos trabajando en ello.
+                ¡Uppps! Todavía no hay películas en este catálogo.
             </div>
             <div class="text-center">
                 <a href="/peliculas" class="btn btn-primary">Volver al catálogo principal</a>

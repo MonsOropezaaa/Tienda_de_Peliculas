@@ -75,6 +75,8 @@ app.use('/carrito', require('./routes/carrito'));
 app.use('/generos', require('./routes/generos'));
 app.use('/peliculas', require('./routes/peliculas'));
 app.use('/checkout', require('./routes/pedidos'));
+app.use('/admin', require('./routes/admin.js'));
+app.use('/search', require('./routes/peliculas'));
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));

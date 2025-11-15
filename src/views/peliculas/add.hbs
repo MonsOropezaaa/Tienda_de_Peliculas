@@ -1,0 +1,54 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Agregar Nueva Película</h3>
+                    
+                    <form action="/peliculas/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="TITULO" class="form-control" placeholder="Título" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="DESCRIPCION" rows="3" class="form-control" placeholder="Descripción"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <input type="number" name="AÑO" class="form-control" placeholder="Año" min="1900">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" name="PRECIO_RENTA" class="form-control" placeholder="Precio Renta (ej. 3.99)">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" name="PRECIO_COMPRA" class="form-control" placeholder="Precio Compra (ej. 15.99)">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group col-md-6">
+                                <input type="number" name="COPIAS_RENTA_DISPONIBLES" class="form-control" placeholder="Stock Renta">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="number" name="COPIAS_VENTA_DISPONIBLES" class="form-control" placeholder="Stock Venta">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="IMAGEN" class="form-control" placeholder="Ruta de Imagen (ej. /posters/nueva.jpg)">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="actores" class="form-control" placeholder="Actores (separados por coma): Tom Hanks, Chris Evans"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="directores" class="form-control" placeholder="Directores (separados por coma): Christopher Nolan"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block">
+                            Guardar Película
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

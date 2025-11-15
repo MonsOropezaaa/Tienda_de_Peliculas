@@ -11,20 +11,21 @@
       
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGeneros" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Géneros
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownGeneros">
               {{#each generos_global}}
                   <a class="dropdown-item" href="/generos/{{this.NOMBRE}}">
                       {{this.NOMBRE}}
                   </a>
               {{/each}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/generos">Ver Todos</a>
-          </div>
+              
         </li>
-      </ul>
+      </ul> <form class="form-inline my-2 my-lg-0 ml-auto" action="/peliculas/search" method="GET">
+          <input class="form-control mr-sm-2" type="search" name="q" placeholder="Buscar película..." aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
 
       <ul class="navbar-nav ml-auto">
         
@@ -34,12 +35,14 @@
                     Hola, {{user.NOMBRE}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
-                    <a class="dropdown-item" href="/profile">Mi Perfil</a>
-                    <a class="dropdown-item" href="/carrito">Mi Carrito</a>
                     
                     {{#if (eq user.ROL 'ADMIN')}}
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/admin/dashboard">Panel de Admin</a>
+                        <a class="dropdown-item" href="/peliculas/add">Agregar Película</a>
+                        <a class="dropdown-item" href="/generos/add">Agregar Género</a>
+                    {{else}}
+                        <a class="dropdown-item" href="/profile">Mi Perfil (Pedidos)</a>
+                        <a class="dropdown-item" href="/carrito">Mi Carrito</a>
                     {{/if}}
 
                     <div class="dropdown-divider"></div>
@@ -55,7 +58,13 @@
             </li>
         {{/if}}
 
-      </ul>
-    </div>
-  </div>
-</nav>
+      </ul> </div> </div> </nav>
+
+<style>
+  @media (min-width: 992px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+  }
+</style>

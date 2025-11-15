@@ -1,0 +1,119 @@
+/*Se cambia el dondo a gris */
+body {
+    background-color: #22272e;
+    color: #f0f6fc; /* Hacemos el texto por defecto más claro */
+}
+
+
+/*Para el logo*/
+.navbar-brand {
+    font-family: 'Momo Trust Display', sans-serif;
+    font-size: 1.75rem; /* La hacemos un poco más grande */
+}
+
+/* Para la barra de navegación*/
+.navbar .nav-link {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+/* --- 3. Personalización de las Tarjetas (Modo Oscuro) --- */
+.card {
+    background-color: #2d333b;
+    border: 1px solid #444c56;
+}
+
+/* DENTRO de la tarjeta */
+.list-group-item {
+    background-color: #2d333b;
+    border-color: #444c56;
+}
+
+/*  pie de tarjeta */
+.card-footer {
+    background-color: #282d33;
+    border-top: 1px solid #444c56;
+}
+
+.logo-container {
+    background-color: #3f454f; /* Un fondo ligeramente más claro que el card */
+    border-radius: 50%; /* Esto crea la forma circular */
+    width: 120px;       /* Ancho del círculo */
+    height: 120px;      /* Alto del círculo */
+    display: flex;      /* Para centrar el contenido (el texto) */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    margin: 0 auto 1.5rem auto; /* Centrar el contenedor y darle espacio abajo */
+    border: 2px solid #5a6268; /* Un borde sutil */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+}
+
+.logo-container h4 {
+    color: #f0f6fc; /* Color del texto del logo */
+    font-family: 'Momo Trust Display', sans-serif; /* Usamos tu fuente */
+    font-size: 1.5rem; /* Ajusta el tamaño de la fuente dentro del círculo */
+    margin-bottom: 0; /* Elimina el margen inferior por defecto del h4 */
+    line-height: 1; /* Asegura que el texto no tenga espacio extra */
+}
+
+
+.modal-content {
+    background-color: #2d333b; /* El mismo gris de tus tarjetas */
+    color: #f0f6fc;           /* Texto claro */
+    border: 1px solid #444c56;
+}
+
+.modal-header {
+    border-bottom: 1px solid #444c56;
+}
+
+.modal-footer {
+    border-top: 1px solid #444c56;
+}
+
+/* Esto hace que el botón 'x' (close) sea blanco y visible 
+  sobre el fondo oscuro.
+*/
+.modal-header .close {
+    color: #ffffff;
+    text-shadow: none; /* Quita la sombra de texto que Bootstrap le pone */
+}
+.modal-header .close:hover {
+    color: #f0f6fc;
+    opacity: 0.8;
+}
+
+/* Esto arregla el fondo de la lista de Actores/Directores 
+  DENTRO del modal.
+*/
+.modal-body .list-group-item {
+    background-color: #3f454a; /* Un gris un poco más claro que la tarjeta */
+    border-color: #444c56;
+}
+
+.dropdown-menu {
+    background-color: #2d333b;  /* Fondo oscuro (igual que tus tarjetas) */
+    border: 1px solid #444c56;  /* Borde sutil */
+}
+
+/* 2. Cambia el color del texto y la fuente de los enlaces */
+.dropdown-item {
+    color: #f0f6fc; /* Texto claro */
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    
+}
+
+/* 3. Cambia el color al pasar el cursor (hover) */
+.dropdown-item:hover {
+    background-color: #495057; /* Un gris un poco más claro */
+    color: #ffffff;
+}
+
+/* 4. Arregla la línea divisora (si la usas) */
+.dropdown-divider {
+    border-top: 1px solid #444c56; /* Borde oscuro */
+}

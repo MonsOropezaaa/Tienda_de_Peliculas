@@ -25,9 +25,12 @@ router.post('/signin', isNotLoggedIn, (req, res, next) =>{
             return next(err);
         }
 
-        if(!user){ //si la autenticación del usuario falla
+        if(!user){ 
             req.flash('error', info.message);
-            return res.redirect('/signin');
+            req.session.save( ()=>{
+                return res.redirect('/signin');
+            });
+            return;
         }
 
         req.logIn(user, (err) =>{  //si todo sale bien, se logea el usuario

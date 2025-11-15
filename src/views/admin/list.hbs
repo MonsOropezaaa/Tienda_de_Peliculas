@@ -1,0 +1,50 @@
+<div class="container p-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Panel de Administración</h2>
+            <a href="/peliculas/add" class="btn btn-success">
+                <i class="material-icons" style="font-size: 1rem; vertical-align: middle;">add</i>
+                Agregar Nueva Película
+            </a>
+            <hr>
+        </div>
+    </div>
+    
+    <div class="row">
+        {{#each peliculas}}
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div style="height: 300px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="{{IMAGEN}}" class="card-img-top" alt="{{TITULO}}" style="max-height: 100%; width: auto;">
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{TITULO}}</h5>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-around">
+                    
+                    <a href="/peliculas/edit/{{ID_PELICULA}}" class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form action="/peliculas/delete/{{ID_PELICULA}}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        {{!-- (No necesitamos el Modal de "Ver detalles" aquí) --}}
+
+        {{else}}
+        <div class="col-md-12">
+            <p>No hay películas en el catálogo.</p>
+        </div>
+        {{/each}}
+    </div>
+</div>
