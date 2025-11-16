@@ -22,7 +22,7 @@ Se utilizan Secrets para gestionar de forma segura las contraseñas de la base d
 
 Se usan Services (tipo NodePort) para exponer la aplicación y la base de datos a la red.
 
-🛠️ Tecnologías Utilizadas
+Tecnologías Utilizadas
 Backend: Node.js, Express
 
 Frontend: Handlebars.js, Bootstrap 4, HTML5, CSS3
@@ -35,7 +35,7 @@ Notificaciones: connect-flash (para mensajes de error y éxito)
 
 Despliegue: Docker, Kubernetes (YAML)
 
-⚙️ Instrucciones de Instalación
+Instrucciones de Instalación
 Sigue estos pasos para correr el proyecto localmente.
 
 Prerrequisitos
@@ -47,37 +47,37 @@ kubectl configurado para apuntar a tu clúster.
 
 Un cliente de MySQL (como MySQL Workbench)
 
-1. Clonar el Repositorio
+-> Clonar el Repositorio
 Bash
 
 git clone https://github.com/MonsOropezaaa/Tienda_de_Peliculas.git
 cd Tienda_de_Peliculas
-2. Instalar Dependencias (Backend)
+Instalar Dependencias (Backend)
 Bash
 
 npm install
-3. Desplegar la Base de Datos (Kubernetes)
-Aplica los manifiestos de Kubernetes en el orden correcto para levantar la base de datos:
+Desplegar la Base de Datos (Kubernetes)
+-> Aplica los manifiestos de Kubernetes en el orden correcto para levantar la base de datos:
 
 Bash
 
-# 1. El Secreto (contraseña)
+ El Secreto (contraseña)
 kubectl apply -f mysql-secret.yaml
 
-# 2. El Volumen Físico (Disco)
+El Volumen Físico (Disco)
 kubectl apply -f mysql-pv.yaml
 
-# 3. La Solicitud de Volumen (PVC)
+ La Solicitud de Volumen (PVC)
 kubectl apply -f mysql-pvc.yaml
 
-# 4. La Aplicación MySQL
+ La Aplicación MySQL
 kubectl apply -f mysql-deployment.yaml
 
-# 5. El Servicio (Acceso externo)
+ El Servicio (Acceso externo)
 kubectl apply -f mysql-nodeport.yaml
 Verifica que el pod esté corriendo con kubectl get pods.
 
-4. Cargar el Script de la Base de Datos
+-> Cargar el Script de la Base de Datos
 Abre MySQL Workbench.
 
 Crea una nueva conexión usando la IP de tu nodo master de K8s y el puerto 30306.
@@ -86,7 +86,7 @@ Usa el usuario root y la contraseña de tu mysql-secret.yaml (Mailo281001).
 
 Abre el archivo database/db.sql y ejecútalo (⚡) para crear todas las tablas e insertar los datos de ejemplo.
 
-5. Configurar Variables de Entorno
+ Configurar Variables de Entorno
 Crea un archivo llamado .env en la raíz del proyecto.
 
 Copia y pega el siguiente contenido (ajusta la IP y el puerto si son diferentes):
@@ -99,7 +99,7 @@ DATABASE=tienda_peliculas
 USER=root
 PASSWORD=Mailo281001
 
-6. Ejecutar la Aplicación
+ Ejecutar la Aplicación
 Bash
 
 npm run dev
