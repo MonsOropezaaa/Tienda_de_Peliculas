@@ -1,5 +1,5 @@
 MonMovies (Proyecto Tienda de Películas)
- Esta es una aplicación web Full-Stack que simula una tienda digital de películas (tipo "Blockbuster" digital), donde los usuarios pueden registrarse, explorar un catálogo de películas, y rentar o comprar estas. La aplicación cuenta con un panel de administrador completo para la gestión de inventario.
+ Esta es una aplicación web Full-Stack que simula una tienda digital de películas (tipo "Blockbuster" digital), donde los usuarios pueden registrarse, explorar un catálogo de películas y rentar o comprar estas. La aplicación cuenta con un panel de administrador completo para la gestión de inventario.
 
 El proyecto está construido con Node.js y Handlebars, utiliza una base de datos MySQL y está diseñado para ser desplegado en un clúster de Kubernetes.
 
@@ -84,7 +84,7 @@ Crea una nueva conexión usando la IP de tu nodo master de K8s y el puerto 30306
 
 Usa el usuario root y la contraseña de tu mysql-secret.yaml (Mailo281001).
 
-Abre el archivo database/db.sql y ejecútalo (⚡) para crear todas las tablas e insertar los datos de ejemplo.
+Abre el archivo database/db.sql y ejecútalo para crear todas las tablas e insertar los datos de ejemplo.
 
  Configurar Variables de Entorno
 Crea un archivo llamado .env en la raíz del proyecto.
@@ -111,7 +111,7 @@ La aplicación tiene dos flujos de usuario principales:
 * Como Cliente
 Registro y Login: Puedes crear una cuenta nueva (/signup) o iniciar sesión (/signin).
 
-Navegación: Explora el catálogo principal, filtra por géneros usando el dropdown dinámico, o usa la barra de búsqueda (busca por Título, Actor, Director o Año).
+Navegación: Explora el catálogo principal, filtra por géneros usando el dropdown dinámico o usa la barra de búsqueda (busca por Título, Actor, Director o Año).
 
 Ver Detalles: Haz clic en "Ver detalles" en cualquier película para abrir una ventana modal con la descripción completa, actores, etc.
 
