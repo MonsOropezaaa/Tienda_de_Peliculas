@@ -105,7 +105,7 @@ Bash
 npm run dev
 Abre tu navegador y ve a http://localhost:4000/peliculas.
 
-📖 Guía de Uso
+Guía de Uso
 La aplicación tiene dos flujos de usuario principales:
 
 * Como Cliente
