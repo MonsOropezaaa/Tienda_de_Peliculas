@@ -7,6 +7,20 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
 
+// esto es para prometheus
+const client = require('prom-client');
+//para recolectar métricas
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics();
+
+// Métrica personalizada para ver cuánto tardan las peticiones
+const httpRequestDurationMicroseconds = new client.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'Duración de las peticiones HTTP en segundos',
+  labelNames: ['method', 'route', 'code'],
+  buckets: [0.1, 0.5, 1, 1.5, 2, 5]
+});
+
 const {database} = require('./keys');
 
 const pool = require('./database');
@@ -14,6 +28,15 @@ const pool = require('./database');
 //initializations
 const app = express();
 require('./lib/passport');
+
+app.use((req, res, next) => {
+  const end = httpRequestDurationMicroseconds.startTimer();
+  res.on('finish', () => {
+    // Registra método, ruta y código (200, 404, etc.)
+    end({ method: req.method, route: req.route ? req.route.path : req.path, code: res.statusCode });
+  });
+  next();
+});
 
 //settings
 app.set('port', process.env.PORT || 4000);
@@ -66,6 +89,19 @@ app.use(async (req, res, next) => {
         next();
     }
 });
+
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  try {
+    res.end(await client.register.metrics());
+  } catch (ex) {
+    res.status(500).send(ex);
+  }
+});
+
+
+
+
 
 //rutas
 

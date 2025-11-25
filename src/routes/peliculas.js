@@ -42,13 +42,13 @@ router.get('/add', isLoggedIn, isAdmin, (req, res) => {
 router.post('/add', isLoggedIn, isAdmin, async (req, res) => {
     
     const { 
-        TITULO, DESCRIPCION, AÑO, PRECIO_RENTA, PRECIO_COMPRA, 
+        TITULO, DESCRIPCION, ANIO, PRECIO_RENTA, PRECIO_COMPRA, 
         COPIAS_RENTA_DISPONIBLES, COPIAS_VENTA_DISPONIBLES, IMAGEN,
         actores, directores 
     } = req.body;
 
     const nuevaPelicula = { 
-        TITULO, DESCRIPCION, AÑO, PRECIO_RENTA, PRECIO_COMPRA, 
+        TITULO, DESCRIPCION, ANIO, PRECIO_RENTA, PRECIO_COMPRA, 
         COPIAS_RENTA_DISPONIBLES, COPIAS_VENTA_DISPONIBLES, IMAGEN 
     };
 
@@ -157,13 +157,13 @@ router.post('/edit/:id', isLoggedIn, isAdmin, async (req, res) => {
     const { id } = req.params;
  
     const { 
-        TITULO, DESCRIPCION, AÑO, PRECIO_RENTA, PRECIO_COMPRA, 
+        TITULO, DESCRIPCION, ANIO, PRECIO_RENTA, PRECIO_COMPRA, 
         COPIAS_RENTA_DISPONIBLES, COPIAS_VENTA_DISPONIBLES, IMAGEN,
         actores, directores
     } = req.body;
 
     const datosPelicula = { 
-        TITULO, DESCRIPCION, AÑO, PRECIO_RENTA, PRECIO_COMPRA, 
+        TITULO, DESCRIPCION, ANIO, PRECIO_RENTA, PRECIO_COMPRA, 
         COPIAS_RENTA_DISPONIBLES, COPIAS_VENTA_DISPONIBLES, IMAGEN 
     };
 
@@ -275,7 +275,7 @@ const { q } = req.query;
             LOWER(P.TITULO) LIKE ? OR
             LOWER(Actores) LIKE ? OR
             LOWER(Directores) LIKE ? OR
-            P.AÑO LIKE ?
+            P.ANIO LIKE ?
     `;
 
     try {
