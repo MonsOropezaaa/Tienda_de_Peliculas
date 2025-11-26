@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-simulation-task
+spec:
+  steps:
+    - name: clonar-codigo
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo ' Clonando repositorio desde GitHub...'; sleep 2; echo 'Código descargado.'"]
+    
+    - name: construir-imagen
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo ' Construyendo imagen Docker...'; sleep 2; echo ' Imagen construida.'"]
+    
+    - name: subir-a-hub
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo ' Subiendo imagen a Docker Hub...'; sleep 2; echo ' Push exitoso.'"]
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pipeline-demo-run-
+spec:
+  taskRunSpecs:
+    - pipelineTaskName: build-simulation-task
+  pipelineSpec:
+    tasks:
+      - name: run-build
+        taskRef:
+          name: build-simulation-task

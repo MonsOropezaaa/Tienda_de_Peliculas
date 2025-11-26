@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: demo-build-v2  
+spec:
+  steps:
+    - name: 1-bajar-codigo
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo '⬇ Clonando repositorio desde GitHub...'; sleep 3; echo ' Código descargado correctamente.'"]
+    
+    - name: 2-construir-docker
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo ' Construyendo imagen de contenedor...'; sleep 4; echo ' Build exitoso.'"]
+    
+    - name: 3-desplegar-k8s
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["echo '🚀 Actualizando Kubernetes...'; sleep 2; echo ' Despliegue completado.'"]
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: demo-run-
+spec:
+  taskRef:
+    name: demo-build-v2
